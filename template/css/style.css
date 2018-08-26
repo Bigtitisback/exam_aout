@@ -1,0 +1,14 @@
+form{
+  display: none;
+}
+
+.log-form{
+  background-color: red;
+}
+.reg-form{
+  background-color: green;
+}
+
+.visible{
+  display: block;
+}
