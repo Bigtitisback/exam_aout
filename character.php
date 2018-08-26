@@ -93,13 +93,13 @@
     $charactersArray = $getCharacters->fetchAll(PDO::FETCH_ASSOC);
 
     function deleteCharacter($id){
-        $deleteCharQuery = "DELETE FROM characters WHERE id='15'";
+        $deleteCharQuery = "DELETE FROM characters WHERE id='".$id."'";
         $doDelete = $db->query($deleteCharQuery);
     }
-    function deleteButton($db, $rowId){
+    function deleteButton($rowId){
         $button= "<form action=\"delete.php\" method=\"post\">";
         $button.= "<label for=\"delete".$rowId."\">Delete number ".$rowId."</label>";
-        $button.= "<input class=\"delete-button\" id=\"delete".$rowId."\"> </form>";
+        $button.= "<input type=\"submit\" class=\"delete-button\" id=\"delete".$rowId."\" value=\"X\"> </form>";
         return $button;
     }
     function htmlTable($contenu, $user, $db, $titres=null, $cssClasse=null){
