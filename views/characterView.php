@@ -1,14 +1,4 @@
-<?php 
-    session_start();
-
-    if(isset($username)){
-        $_SESSION['user'] = $username;
-    }
-
-    echo "CHARACTER:: Voici vos personnages ".$_SESSION['user'] ;    
-?>
-
-<form method="post" action="character.php" class="add-form">
+<form method="post" action="./../controllers/createCharacter.php" class="add-form">
     <label for="char-name">Name:</label>
     <input type="text" id="char-name" name="charname">
 
@@ -37,55 +27,14 @@
     <label for="char-agility">Agility:</label>
     <input type="range" id="char-agility" name="charagility" min="0" max="10" value="0">
 
-    <button type="submit" id="char__submit">Register</button>
+    <button type="submit" id="char__submit">Create</button>
 </form>
 
 <?php
 
-    try{
-        $db = new PDO('mysql:host=localhost;dbname=users', 'root', '');
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    }
-    catch(Exception $e){
-        die('Erreur : '.$e->getMessage());
-    }
 
     // CREATION DU PERSONNAGE
-    if( isset($_POST['charname']) && strlen($_POST['charname']) != 0 && isset($_POST['charjob']) && isset($_POST['charrace']) && 
-        isset($_POST['charstrength']) && isset($_POST['charmana']) && isset($_POST['charagility'])){
-
-            // echo "CHARACTER:: Tous les champs sont remplis </br>";
-            // foreach($_POST as $key => $element){
-            //     echo $key.": ".$element."</br>";
-            // }
-            $checkQuery = "SELECT * FROM characters WHERE owner='".$_SESSION['user']."' AND name='".$_POST['charname']."'";
-            $isChecked = $db->query($checkQuery);
-            $entries = $isChecked->fetchAll(PDO::FETCH_ASSOC);
-
-            if(count($entries) == 0){
-                $query = $db->prepare( "INSERT INTO characters (name, race, job, strength, mana, agility, owner) 
-                                        VALUES ( :charname, :charrace, :charjob, :charstrength, :charmana, :charagility, :charowner)" );
-                $qExec = $query->execute(array(
-                    'charname' => $_POST['charname'],
-                    'charrace' => $_POST['charrace'],
-                    'charjob' => $_POST['charjob'],
-                    'charstrength' => $_POST['charstrength'],
-                    'charmana' => $_POST['charmana'],
-                    'charagility' => $_POST['charagility'],
-                    'charowner' => $_SESSION['user']
-                ));
-                if($qExec != false)
-                {
-                    echo "CHARACTER:: ".$_POST['charname'].", ".$_POST['charrace']." ".$_POST['charjob']." créé !";
-                }
-            }
-            else{
-                echo "CHARACTER:: Vous avez déjà un personnage du nom de ".$_POST['charname'];
-            }
-    }
-    else{
-        echo "CHARACTER:: Veuillez indiquer un nom pour votre personnage";
-    }
+    
 
     // AFFICHAGE DES PERSONNAGES DE L'UTILISATEUR
     $ownerCharactersQuery = "SELECT * FROM characters WHERE  owner='".$_SESSION['user']."'";
