@@ -22,7 +22,7 @@
 
 
   
-  <form method="post" action="register.php" class="reg-form">
+  <form method="post" action="models/register.php" class="reg-form">
     <label for="reg__username-input">Username:</label>
     <input type="text" id="reg__username-input" name="username">
 

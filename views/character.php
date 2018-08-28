@@ -1,8 +1,8 @@
 <?php 
     session_start();
 
-    if(isset($username)){
-        $_SESSION['user'] = $username;
+    if(isset($_POST['username'])){
+        $_SESSION['user'] = $_POST['username'];
     }
 
     echo "CHARACTER:: Voici vos personnages ".$_SESSION['user'] ;    

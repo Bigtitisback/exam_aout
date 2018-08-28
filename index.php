@@ -1,4 +1,4 @@
 <?php
-include("functions.php");
-include("connexion.php");
-?>
+require("models/login.php");
+
+require("views/connexion.php");
