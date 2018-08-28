@@ -1,4 +1,2 @@
 <?php
-require("models/login.php");
-
-require("views/connexion.php");
+require("views/connectView.php");

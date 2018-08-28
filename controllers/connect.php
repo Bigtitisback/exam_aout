@@ -1,15 +1,17 @@
 <?php
-require("./../models/login.php");
+require("./../models/connectModels.php");
 
 if( (isset($_POST['username']) && isset($_POST['password'])) )
 {
     $username = $_POST['username'];
-    $pwd = $_POST['password'];
+    $password = $_POST['password'];
 
-    if($entry != false && password_verify($pwd,$entry[0]['password'])){
+    $user = getUser($username);
+
+    if($user != false && password_verify($password,$entry[0]['password'])){
         // echo "LOGIN:: Success";
         // echo "LOGIN:: Vous êtes connectés en tant que ".$username;
-        require("./../views/character.php");
+        require("./../views/characterView.php");
     }
     else
     {

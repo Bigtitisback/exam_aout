@@ -10,7 +10,7 @@
   <button class="log-button">Connexion</button>
   <button class="reg-button">Inscription</button>
 
-  <form method="post" action="login.php" class="log-form">
+  <form method="post" action="./../controllers/connect.php" class="log-form">
     <label for="log__username-input">Username:</label>
     <input type="text" id="log__username-input" name="username">
 
@@ -22,7 +22,7 @@
 
 
   
-  <form method="post" action="models/register.php" class="reg-form">
+  <form method="post" action="./../controllers/register.php" class="reg-form">
     <label for="reg__username-input">Username:</label>
     <input type="text" id="reg__username-input" name="username">
 
