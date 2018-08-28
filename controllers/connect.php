@@ -1,15 +1,15 @@
 <?php
-session_start();
+require("./../models/ConnectManager.php");
 
-require("./../models/connectModels.php");
+$connectManager = new ConnectManager();
 
 if( (isset($_POST['username']) && isset($_POST['password'])) )
 {
     $username = $_POST['username'];
-    $_SESSION['user'] = $username;
+    
     $password = $_POST['password'];
 
-    $user = getUser($username);
+    $user = $connectManager->getUser($username);
 
     if($user != false && password_verify($password,$user[0]['password'])){
         // echo "LOGIN:: Success";

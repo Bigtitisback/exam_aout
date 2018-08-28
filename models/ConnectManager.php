@@ -1,19 +1,22 @@
 <?php
+require("Manager.php");
 
-    function getUser($username){
+class ConnectManager extends Manager{
+
+    public function getUser($username){
         // CONNECTION A LA DB AVEC PDO
-        $db = dbConnect();
-
+        $db = $this->dbConnect();
+    
         $checkQuery =  "SELECT * FROM users WHERE username='".$username."'";
         $checkRes  = $db->query($checkQuery);
         $entry = $checkRes->fetchAll(PDO::FETCH_ASSOC);
-
+    
         return $entry;
     }
-
-    function checkUsers($username, $mail){
+    
+    public function checkUsers($username, $mail){
         // CONNECTION A LA DB AVEC PDO
-        $db = dbConnect();
+        $db = $this->dbConnect();
     
         $checkQuery = "SELECT * FROM users WHERE username='".$username."' OR email ='".$mail."'" ;
         $isChecked = $db->query($checkQuery);
@@ -21,10 +24,10 @@
     
         return $entries;
     }
-
-    function register($username, $mail, $password){
-        $db = dbConnect();
-
+    
+    public function register($username, $mail, $password){
+        $db = $this->dbConnect();
+    
         $query = $db->prepare( "INSERT INTO users (username, email, password) VALUES ( :username, :email, :password)" );
         $qExec = $query->execute(array(
             'username' => $username,
@@ -33,15 +36,6 @@
         ));
         return $qExec;
     }
+}
 
-    function dbConnect(){
-        try{
-            $db = new PDO('mysql:host=localhost;dbname=users', 'root', '');
-            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $db;
-        }
-        catch(Exception $e){
-            die('Erreur : '.$e->getMessage());
-        }
-    }
 ?>
