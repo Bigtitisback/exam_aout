@@ -3,7 +3,7 @@ require("Manager.php");
 
 class ConnectManager extends Manager{
 
-    public function getUser($username){
+    static function getUser($username){
         // CONNECTION A LA DB AVEC PDO
         $db = $this->dbConnect();
     

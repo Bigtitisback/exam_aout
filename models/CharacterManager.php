@@ -29,6 +29,8 @@ class CharacterManager extends Manager{
         ));
         return $qExec;
     }
+
+
 }
 
 

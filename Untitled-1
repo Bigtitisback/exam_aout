@@ -1,0 +1,26 @@
+<?php
+
+
+class Router{
+
+protected routes = [
+    '/page1'=>'createCharacter.php',
+    '/page2'=>'createUser.php',
+
+];
+
+protected function getPath(){
+    return $_SERVER['REQUEST_URI'];
+}
+
+protected function redirectController(){
+    $path = $this->getPath;
+    if(isset($this->routes[$path])){
+        require("/views/".routes[$path]);
+    }else{
+        //404
+    }
+
+}
+
+}
