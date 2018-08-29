@@ -1,7 +1,5 @@
 <?php
-require("./../models/ConnectManager.php");
-
-$connectManager = new ConnectManager();
+//require("../models/ConnectManager.php");
 
 if( isset($_POST['username']) && strlen($_POST['username'])!=0 &&
     isset($_POST['mail']) && strlen($_POST['mail'])!=0 &&
@@ -11,13 +9,13 @@ if( isset($_POST['username']) && strlen($_POST['username'])!=0 &&
     $mail = $_POST['mail'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $users = $connectManager->checkUsers($username, $mail);
+    $users = ConnectManager::checkUsers($username, $mail);
     
     
     // SI 0 RESULTAT ALORS
     if(count($users) == 0)
     {
-        $executed = $connectManager->register($username, $mail, $password);
+        $executed = ConnectManager::register($username, $mail, $password);
 
         if($executed != false)
         {

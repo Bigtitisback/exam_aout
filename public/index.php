@@ -1,5 +1,11 @@
 <?php
  
-require("../controllers/connect.php");
+require("../controllers/PagesController.php");
+$pagesController = new PagesController();
 
-PagesController::index();
+if( count($_GET)==0 || $_GET['action']=='connect' ){
+    $pagesController->index();
+}
+elseif($_GET['action']=='character'){
+    $pagesController->characterView();
+}

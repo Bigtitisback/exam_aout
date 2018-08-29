@@ -3,8 +3,8 @@ require("Manager.php");
 
 class ConnectManager extends Manager{
 
-    static function getUser($username){
-        // CONNECTION A LA DB AVEC PDO
+    public function getUser($username){
+        
         $db = $this->dbConnect();
     
         $checkQuery =  "SELECT * FROM users WHERE username='".$username."'";
@@ -15,7 +15,7 @@ class ConnectManager extends Manager{
     }
     
     public function checkUsers($username, $mail){
-        // CONNECTION A LA DB AVEC PDO
+        
         $db = $this->dbConnect();
     
         $checkQuery = "SELECT * FROM users WHERE username='".$username."' OR email ='".$mail."'" ;
@@ -26,6 +26,7 @@ class ConnectManager extends Manager{
     }
     
     public function register($username, $mail, $password){
+
         $db = $this->dbConnect();
     
         $query = $db->prepare( "INSERT INTO users (username, email, password) VALUES ( :username, :email, :password)" );

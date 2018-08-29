@@ -7,10 +7,10 @@
 </head>
 <body>
   
-  <button class="log-button">Connexion</button>
-  <button class="reg-button">Inscription</button>
+  <!-- <button class="log-button">Connexion</button>
+  <button class="reg-button">Inscription</button> -->
 
-  <form method="post" action="../controllers/connect.php" class="log-form">
+  <form method="post" action="../public/index.php?action=connect" class="log-form">
     <label for="log__username-input">Username:</label>
     <input type="text" id="log__username-input" name="username">
 
