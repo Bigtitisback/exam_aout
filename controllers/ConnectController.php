@@ -1,6 +1,7 @@
 <?php
 session_start();
 require("../models/ConnectManager.php");
+require("../controllers/CharacterController.php");
 
 
 class ConnectController{
@@ -8,6 +9,7 @@ class ConnectController{
     public function connect(){
 
         $connectManager = new ConnectManager();
+        $charController = new CharacterController();
 
         if( (isset($_POST['username']) && isset($_POST['password'])) )
         {
@@ -24,6 +26,7 @@ class ConnectController{
                 $_SESSION['user'] = $username;
                 
                 require("../views/characterView.php");
+                $charactersTable = $charController->displayCharacters();
             }
             else
             {

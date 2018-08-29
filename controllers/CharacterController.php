@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 require("./../models/CharacterManager.php");
 
 
@@ -35,7 +35,7 @@ class CharacterController{
         }
     }
 
-    public function displayCharacters($user, $db){
+    public function displayCharacters(){
 
         $charManager = new CharacterManager();
 
@@ -66,6 +66,8 @@ class CharacterController{
             }
         $tableau.= "</table>";
         return $tableau;
+
+        require('../views/characterView.php');
     }
 
 }
