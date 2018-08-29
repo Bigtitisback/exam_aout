@@ -1,35 +1,44 @@
 <?php
-//require("../models/ConnectManager.php");
+require("../models/ConnectManager.php");
 
-if( isset($_POST['username']) && strlen($_POST['username'])!=0 &&
-    isset($_POST['mail']) && strlen($_POST['mail'])!=0 &&
-    isset($_POST['password']) && strlen($_POST['password'])!=0 )
-{
-    $username = $_POST['username'];
-    $mail = $_POST['mail'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+class RegisterController{
 
-    $users = ConnectManager::checkUsers($username, $mail);
-    
-    
-    // SI 0 RESULTAT ALORS
-    if(count($users) == 0)
-    {
-        $executed = ConnectManager::register($username, $mail, $password);
+    public function register(){
 
-        if($executed != false)
+        $connectManager = new ConnectManager();
+
+        if( isset($_POST['username']) && strlen($_POST['username'])!=0 &&
+            isset($_POST['mail']) && strlen($_POST['mail'])!=0 &&
+            isset($_POST['password']) && strlen($_POST['password'])!=0 )
         {
-            require("./../views/characterView.php");
+            $username = $_POST['username'];
+            $mail = $_POST['mail'];
+            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        
+            $users = $connectManager->checkUsers($username, $mail);
+            
+            if(count($users) == 0)
+            {
+                $executed = $connectManager->register($username, $mail, $password);
+        
+                if($executed != false)
+                {
+                    echo "LOGIN:: Votre compte vient d'être créé";
+                    echo "LOGIN:: Vous êtes connectés en tant que ".$username;
+                    require("../views/characterView.php");
+                }
+            }
+            
+            else{
+                require("../views/connectView.php");
+                echo "REGISTER:: Ce compte existe déjà";
+            }
+        }
+        // SI CHAMPS OBLIGATOIRES PAS REMPLIS
+        else{
+            require("../views/connectView.php");
+            echo "REGISTER:: Les champs doivent être remplis";
         }
     }
-    
-    else{
-    echo "REGISTER:: Ce compte existe déjà";
-    require("./../views/connectView.php");
-    }
-}
-// SI CHAMPS OBLIGATOIRES PAS REMPLIS
-else{
-    echo "REGISTER:: Les champs doivent être remplis";
-    require("./../views/connectView.php");
+
 }

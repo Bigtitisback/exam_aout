@@ -1,5 +1,5 @@
 <?php
-// require("Manager.php");
+require("Manager.php");
 
 class CharacterManager extends Manager{
 
@@ -28,6 +28,16 @@ class CharacterManager extends Manager{
             'charowner' => $_SESSION['user']
         ));
         return $qExec;
+    }
+
+    public function getCharacters(){
+        $db = $this->dbConnect();
+
+        $ownerCharactersQuery = "SELECT * FROM characters WHERE  owner='".$_SESSION['user']."'";
+        $getCharacters = $db->query($ownerCharactersQuery);
+        $charactersArray = $getCharacters->fetchAll(PDO::FETCH_ASSOC);
+
+        return $charactersArray;
     }
 
 

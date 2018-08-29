@@ -7,13 +7,16 @@ class PagesController{
         $connectController->connect();
     }
 
+    public function register(){
+        require('RegisterController.php');
+        $registerController = new RegisterController();
+        $registerController->register();
+    }
 
-    public function characterView(){
-
-        require("../public/character-view.php");
-        
-        // require('RegisterController.php');
-        // require('CharacterController.php');
+    public function createCharacter(){
+        require('CharacterController.php');
+        $characterController = new CharacterController();
+        $characterController->createCharacter();
     }
     
     

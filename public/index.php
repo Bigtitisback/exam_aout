@@ -6,6 +6,9 @@ $pagesController = new PagesController();
 if( count($_GET)==0 || $_GET['action']=='connect' ){
     $pagesController->index();
 }
-elseif($_GET['action']=='character'){
-    $pagesController->characterView();
+elseif ($_GET['action']=='register') {
+    $pagesController->register();
+}
+elseif ($_GET['action']=='create-character') {
+    $pagesController->createCharacter();
 }
