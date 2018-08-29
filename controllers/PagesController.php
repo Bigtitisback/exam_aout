@@ -18,6 +18,12 @@ class PagesController{
         $characterController = new CharacterController();
         $characterController->createCharacter();
     }
+
+    public function displayCharacters(){
+        require('CharacterController.php');
+        $characterController = new CharacterController();
+        $characterController->displayCharacters();
+    }
     
     
 }

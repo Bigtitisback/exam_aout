@@ -1,4 +1,5 @@
 <?php
+session_start();
 require("../models/ConnectManager.php");
 
 
@@ -18,12 +19,16 @@ class ConnectController{
         
             if($user != false && password_verify($password,$user[0]['password'])){
                 echo "LOGIN:: Vous êtes connectés en tant que ".$username;
+                
+                $_SESSION['id'] = $user[0]['id'];
+                $_SESSION['user'] = $username;
+                
                 require("../views/characterView.php");
             }
             else
             {
                 require('../views/connectView.php');
-                echo "LOGIN:: Ce nom d'utilisateur ou cet email n'est pas enregistré";
+                echo "LOGIN:: Ce nom d'utilisateur n'existe pas ou le mot de passe est erroné";
             }
         }
         else{
