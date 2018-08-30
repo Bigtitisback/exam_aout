@@ -1,4 +1,5 @@
 <?php
+session_start();
  
 require_once("../controllers/PagesController.php");
 $pagesController = new PagesController();
@@ -13,5 +14,6 @@ elseif ($_GET['action']=='create-character') {
     $pagesController->createCharacter();
 }
 elseif ($_GET['action']=='connect' || $_GET['action']=='register' || $_GET['action']=='create-character'){
-    $pagesController->displayCharacter();
+    echo "hello";
+    //$pagesController->displayCharacter();
 }

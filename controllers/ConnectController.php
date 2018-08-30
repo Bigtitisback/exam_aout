@@ -1,23 +1,31 @@
 <?php
-session_start();
+// session_start();
 require_once("../models/ConnectManager.php");
 require_once("../controllers/CharacterController.php");
+require_once("../views/CharacterView.php");
 
 
 class ConnectController{
 
+    private $_connectManager;
+    private $_charController;
+    private $_charView;
+
+    public function __construct(){
+        $this->_connectManager = new ConnectManager();
+        $this->_charController = new CharacterController();
+        $this->_charView = new CharacterView();
+    }
+
     public function connect(){
 
-        $connectManager = new ConnectManager();
-        $charController = new CharacterController();
-
-        if( (isset($_POST['username']) && isset($_POST['password'])) )
+        if( isset($_POST['username']) && isset($_POST['password']) && strlen($_POST['username'])!=0 && strlen($_POST['password'])!=0)
         {
             $username = $_POST['username'];
             
             $password = $_POST['password'];
         
-            $user = $connectManager->getUser($username);
+            $user = $this->_connectManager->getUser($username);
         
             if($user != false && password_verify($password,$user[0]['password'])){
                 echo "LOGIN:: Vous êtes connectés en tant que ".$username;
@@ -25,8 +33,8 @@ class ConnectController{
                 $_SESSION['id'] = $user[0]['id'];
                 $_SESSION['user'] = $username;
                 
-                require_once("../views/characterView.php");
-                $charactersTable = $charController->displayCharacters($_SESSION['user']);
+                echo $this->_charView->setForm();
+                $charactersTable = $this->_charController->displayCharacters($_SESSION['user']);
             }
             else
             {

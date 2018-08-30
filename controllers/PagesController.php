@@ -1,5 +1,6 @@
 <?php
 
+
 class PagesController{
     public function index(){
         require_once('ConnectController.php');
@@ -16,7 +17,7 @@ class PagesController{
     public function createCharacter(){
         require_once('CharacterController.php');
         $characterController = new CharacterController();
-        $characterController->createCharacter();
+        $characterController->createCharacter($_SESSION['user']);
     }
 
     public function displayCharacters(){

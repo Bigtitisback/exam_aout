@@ -13,7 +13,7 @@ class CharacterManager extends Manager{
         return $entries;
     }
     
-    public function createCharacter(){
+    public function createCharacter($user){
         $db = $this->dbConnect();
     
         $query = $db->prepare( "INSERT INTO characters (name, race, job, strength, mana, agility, owner) 
@@ -25,15 +25,15 @@ class CharacterManager extends Manager{
             'charstrength' => $_POST['charstrength'],
             'charmana' => $_POST['charmana'],
             'charagility' => $_POST['charagility'],
-            'charowner' => $_SESSION['user']
+            'charowner' => $user
         ));
         return $qExec;
     }
 
-    public function getCharacters(){
+    public function getCharacters($user){
         $db = $this->dbConnect();
 
-        $ownerCharactersQuery = "SELECT * FROM characters WHERE  owner='".$_SESSION['user']."'";
+        $ownerCharactersQuery = "SELECT * FROM characters WHERE  owner='".$user."'";
         $getCharacters = $db->query($ownerCharactersQuery);
         $charactersArray = $getCharacters->fetchAll(PDO::FETCH_ASSOC);
 
