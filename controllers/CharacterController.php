@@ -35,39 +35,45 @@ class CharacterController{
         }
     }
 
-    public function displayCharacters($user){
+    public function displayCharacters(){
 
         $charManager = new CharacterManager();
 
-        $characters = $charManager->getCharacters();
-
         $titres = ["N°", "Name", "Race", "Job", "Strength", "Mana", "Agility"];
-
-        $tableau= "<table>";
-
-            $tableau.= "<tr>";
-            if($titres!=null){
-                foreach ($titres as $titre) {
-                    if($titre != "owner"){
-                        $tableau.= "<th>".$titre."</th>";
-                    }
-                }
-            }
-
-            $tableau.= "</tr>";
-            foreach ($characters as $character) {
-                $tableau.= "<tr>";
-                foreach ($character as $attr) {
-                    if($attr == $character['id']){$rowId = $attr;}
-                    if($attr != $user){$tableau.= "<td>".$attr."</td>";}
-                    //if($attr == $user){$tableau.= "<td>".deleteButton($rowId)."</td>";}
-                }
-                $tableau.= "</tr>";
-            }
-        $tableau.= "</table>";
+        $characters = $charManager->getCharacters();
+        $user = $_SESSION['user'];
+        $infos = [
+            'titre' => $titres,
+            'characters' => $characters,
+            'user' => $user
+        ];
         
-        require_once('../views/characterView.php');
-        echo $tableau;
+        //require_once('../views/characterView.php');
+        header('Location: index.php?action=create-character&info='.$infos);
+        // $tableau= "<table>";
+
+        //     $tableau.= "<tr>";
+        //     if($titres!=null){
+        //         foreach ($titres as $titre) {
+        //             if($titre != "owner"){
+        //                 $tableau.= "<th>".$titre."</th>";
+        //             }
+        //         }
+        //     }
+
+        //     $tableau.= "</tr>";
+        //     foreach ($characters as $character) {
+        //         $tableau.= "<tr>";
+        //         foreach ($character as $attr) {
+        //             if($attr == $character['id']){$rowId = $attr;}
+        //             if($attr != $user){$tableau.= "<td>".$attr."</td>";}
+        //             //if($attr == $user){$tableau.= "<td>".deleteButton($rowId)."</td>";}
+        //         }
+        //         $tableau.= "</tr>";
+        //     }
+        // $tableau.= "</table>";
+        
+        //echo $tableau;
 
     }
 

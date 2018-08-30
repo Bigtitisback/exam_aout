@@ -1,3 +1,8 @@
+<?php
+require_once('../utilities/functions.php');
+
+?>
+
 <form method="post" action="../public/index.php?action=create-character" class="add-form">
     <label for="char-name">Name:</label>
     <input type="text" id="char-name" name="charname">
@@ -32,7 +37,10 @@
 
 <?php    
 
-
+    if(isset($infos)){
+        echo "coucou";
+        htmlTable($_GET['info']['characters'], $_GET['info']['titres']);
+    }
     
 
     // function deleteCharacter($id){

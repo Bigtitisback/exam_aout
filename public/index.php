@@ -12,3 +12,6 @@ elseif ($_GET['action']=='register') {
 elseif ($_GET['action']=='create-character') {
     $pagesController->createCharacter();
 }
+elseif ($_GET['action']=='connect' || $_GET['action']=='register' || $_GET['action']=='create-character'){
+    $pagesController->displayCharacter();
+}
