@@ -1,7 +1,7 @@
 <?php
 session_start();
-require("../models/ConnectManager.php");
-require("../controllers/CharacterController.php");
+require_once("../models/ConnectManager.php");
+require_once("../controllers/CharacterController.php");
 
 
 class ConnectController{
@@ -25,17 +25,17 @@ class ConnectController{
                 $_SESSION['id'] = $user[0]['id'];
                 $_SESSION['user'] = $username;
                 
-                require("../views/characterView.php");
-                $charactersTable = $charController->displayCharacters();
+                require_once("../views/characterView.php");
+                $charactersTable = $charController->displayCharacters($_SESSION['user']);
             }
             else
             {
-                require('../views/connectView.php');
+                require_once('../views/connectView.php');
                 echo "LOGIN:: Ce nom d'utilisateur n'existe pas ou le mot de passe est erroné";
             }
         }
         else{
-            require('../views/connectView.php');
+            require_once('../views/connectView.php');
             echo "LOGIN:: Les champs doivent être remplis";
         }
 

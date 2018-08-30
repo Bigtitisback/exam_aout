@@ -1,5 +1,5 @@
 <?php
-require("Manager.php");
+require_once("Manager.php");
 
 class CharacterManager extends Manager{
 

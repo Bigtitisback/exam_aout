@@ -2,25 +2,25 @@
 
 class PagesController{
     public function index(){
-        require('ConnectController.php');
+        require_once('ConnectController.php');
         $connectController = new ConnectController();
         $connectController->connect();
     }
 
     public function register(){
-        require('RegisterController.php');
+        require_once('RegisterController.php');
         $registerController = new RegisterController();
         $registerController->register();
     }
 
     public function createCharacter(){
-        require('CharacterController.php');
+        require_once('CharacterController.php');
         $characterController = new CharacterController();
         $characterController->createCharacter();
     }
 
     public function displayCharacters(){
-        require('CharacterController.php');
+        require_once('CharacterController.php');
         $characterController = new CharacterController();
         $characterController->displayCharacters();
     }

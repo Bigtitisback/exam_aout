@@ -1,6 +1,6 @@
 <?php
 //session_start();
-require("./../models/CharacterManager.php");
+require_once("./../models/CharacterManager.php");
 
 
 class CharacterController{
@@ -21,21 +21,21 @@ class CharacterController{
                 if($executed != false)
                 {
                     echo "CHARACTER:: ".$_POST['charname'].", ".$_POST['charrace']." ".$_POST['charjob']." créé !";
-                    require('../views/characterView.php');
+                    require_once('../views/characterView.php');
                 }
             }
             else{
-                require('../views/characterView.php');
+                require_once('../views/characterView.php');
                 echo "CHARACTER:: Vous avez déjà un personnage du nom de ".$_POST['charname'];
             }
         }
         else{
-            require('../views/characterView.php');
+            require_once('../views/characterView.php');
             echo "CHARACTER:: Veuillez indiquer un nom pour votre personnage";
         }
     }
 
-    public function displayCharacters(){
+    public function displayCharacters($user){
 
         $charManager = new CharacterManager();
 
@@ -65,9 +65,10 @@ class CharacterController{
                 $tableau.= "</tr>";
             }
         $tableau.= "</table>";
+        
+        require_once('../views/characterView.php');
         return $tableau;
 
-        require('../views/characterView.php');
     }
 
 }

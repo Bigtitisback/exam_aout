@@ -1,5 +1,5 @@
 <?php
-require("../models/ConnectManager.php");
+require_once("../models/ConnectManager.php");
 
 class RegisterController{
 
@@ -25,18 +25,18 @@ class RegisterController{
                 {
                     echo "LOGIN:: Votre compte vient d'être créé";
                     echo "LOGIN:: Vous êtes connectés en tant que ".$username;
-                    require("../views/characterView.php");
+                    require_once("../views/characterView.php");
                 }
             }
             
             else{
-                require("../views/connectView.php");
+                require_once("../views/connectView.php");
                 echo "REGISTER:: Ce compte existe déjà";
             }
         }
         // SI CHAMPS OBLIGATOIRES PAS REMPLIS
         else{
-            require("../views/connectView.php");
+            require_once("../views/connectView.php");
             echo "REGISTER:: Les champs doivent être remplis";
         }
     }

@@ -1,6 +1,6 @@
 <?php
  
-require("../controllers/PagesController.php");
+require_once("../controllers/PagesController.php");
 $pagesController = new PagesController();
 
 if( count($_GET)==0 || $_GET['action']=='connect' ){
