@@ -60,14 +60,14 @@ class CharacterController{
                 foreach ($character as $attr) {
                     if($attr == $character['id']){$rowId = $attr;}
                     if($attr != $user){$tableau.= "<td>".$attr."</td>";}
-                    if($attr == $user){$tableau.= "<td>".deleteButton($rowId)."</td>";}
+                    //if($attr == $user){$tableau.= "<td>".deleteButton($rowId)."</td>";}
                 }
                 $tableau.= "</tr>";
             }
         $tableau.= "</table>";
         
         require_once('../views/characterView.php');
-        return $tableau;
+        echo $tableau;
 
     }
 

@@ -33,7 +33,7 @@
 <?php    
 
 
-    echo $charactersTable;
+    
 
     // function deleteCharacter($id){
     //     $deleteCharQuery = "DELETE FROM characters WHERE id='".$id."'";
