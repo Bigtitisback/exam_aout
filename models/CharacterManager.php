@@ -38,6 +38,15 @@ class CharacterManager extends Manager{
         return $doDelete;
     }
 
+    public function getCharacter($id){
+        $db = $this->dbConnect();
+
+        $characterQuery = "SELECT * FROM characters WHERE id='".$id."' ";
+        $getCharacter = $db->query($characterQuery);
+        $character = $getCharacter->fetch(PDO::FETCH_ASSOC);
+        return $character;
+    }
+
     public function getCharacters($user, $sortType){
         $db = $this->dbConnect();
 

@@ -1,5 +1,4 @@
 <?php
-require_once('../utilities/functions.php');
 
 class CharacterView{
 

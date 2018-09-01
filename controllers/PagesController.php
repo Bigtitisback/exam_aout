@@ -31,6 +31,10 @@ class PagesController{
         $this->_characterController->deleteCharacter($id);
     }
 
+    public function modifyCharacter($id){
+        $this->_characterController->modifyCharacter($id);
+    }
+
     public function sortCharacter($sortType){
         $this->_characterController->sortCharacter($sortType);
     }

@@ -2,13 +2,16 @@
 //session_start();
 require_once("../models/CharacterManager.php");
 require_once("../views/CharacterView.php");
+require_once("../views/EditorView.php");
 
 class CharacterController{
 
     private $_charView;
+    private $_editorView;
     private $_charManager;
 
     public function __construct(){
+        $this->_editorView = new EditorView();
         $this->_charView = new CharacterView();
         $this->_charManager = new CharacterManager();
     }
@@ -43,6 +46,11 @@ class CharacterController{
             echo $this->_charView->setForm();
             $this->displayCharacters($user);
         }
+    }
+
+    public function modifyCharacter($id){
+        $character = $this->_charManager->getCharacter($id);
+        echo $this->_editorView->displayEditor($character);
     }
 
     public function deleteCharacter($id){
