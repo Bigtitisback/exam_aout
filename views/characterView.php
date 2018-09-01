@@ -58,12 +58,18 @@ class CharacterView{
                 foreach ($character as $attr) {
                     if($attr == $character['id']){$rowId = $attr;}
                     if($attr != $user){$tableau.= "<td>".$attr."</td>";}
-                    //if($attr == $user){$tableau.= "<td>".deleteButton($rowId)."</td>";}
+                    if($attr == $user){$tableau.= "<td>".$this->deleteButton($rowId)."</td>";}
                 }
                 $tableau.= "</tr>";
             }
         $tableau.= "</table>";
         return $tableau;
+    }
+    function deleteButton($rowId){
+        $button= "<form action='../public/index.php?action=delete-character&id=".$rowId."' method=\"post\">";
+        $button.= "<label for=\"delete".$rowId."\">Delete number ".$rowId."</label>";
+        $button.= "<input type=\"submit\" class=\"delete-button\" id=\"delete".$rowId."\" value=\"X\"> </form>";
+        return $button;
     }
 }
     // if(isset($infos)){
@@ -75,12 +81,6 @@ class CharacterView{
     // function deleteCharacter($id){
     //     $deleteCharQuery = "DELETE FROM characters WHERE id='".$id."'";
     //     $doDelete = $db->query($deleteCharQuery);
-    // }
-    // function deleteButton($rowId){
-    //     $button= "<form action=\"delete.php\" method=\"post\">";
-    //     $button.= "<label for=\"delete".$rowId."\">Delete number ".$rowId."</label>";
-    //     $button.= "<input type=\"submit\" class=\"delete-button\" id=\"delete".$rowId."\" value=\"X\"> </form>";
-    //     return $button;
     // }
    
     //echo htmlTable($charactersArray ,$_SESSION['user'], $db, $arrayColumns);
