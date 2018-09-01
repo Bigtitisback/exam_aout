@@ -38,10 +38,16 @@ class CharacterManager extends Manager{
         return $doDelete;
     }
 
-    public function getCharacters($user){
+    public function getCharacters($user, $sortType){
         $db = $this->dbConnect();
 
-        $ownerCharactersQuery = "SELECT * FROM characters WHERE  owner='".$user."'";
+        if($sortType == null){
+            $ownerCharactersQuery = "SELECT * FROM characters WHERE  owner='".$user."'";
+        }elseif($sortType == 'N°'){
+            $ownerCharactersQuery = "SELECT * FROM characters WHERE  owner='".$user."' ORDER BY id ";
+        }else{
+            $ownerCharactersQuery = "SELECT * FROM characters WHERE  owner='".$user."' ORDER BY ".$sortType." ";
+        }
         $getCharacters = $db->query($ownerCharactersQuery);
         $charactersArray = $getCharacters->fetchAll(PDO::FETCH_ASSOC);
 

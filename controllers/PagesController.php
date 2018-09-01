@@ -26,9 +26,13 @@ class PagesController{
     public function createCharacter(){
         $this->_characterController->createCharacter($_SESSION['user']);
     }
-    
+
     public function deleteCharacter($id){
         $this->_characterController->deleteCharacter($id);
+    }
+
+    public function sortCharacter($sortType){
+        $this->_characterController->sortCharacter($sortType);
     }
 
     public function displayCharacters(){

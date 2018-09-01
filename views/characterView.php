@@ -47,7 +47,7 @@ class CharacterView{
             if($titres!=null){
                 foreach ($titres as $titre) {
                     if($titre != "owner"){
-                        $tableau.= "<th>".$titre."</th>";
+                        $tableau.= "<th>".$this->sortButton($titre)."</th>";
                     }
                 }
             }
@@ -66,7 +66,14 @@ class CharacterView{
         return $tableau;
     }
 
-    function deleteButton($rowId){
+    private function sortButton($sortType){
+        $button= "<form action='../public/index.php?action=sort-character&sort=".$sortType."' method=\"post\">";
+        $button.= "<label for=\"sort".$sortType."\">".$sortType."</label>";
+        $button.= "<input type=\"submit\" class=\"sort-button\" id=\"sort".$sortType."\" value=\"sort\"> </form>";
+        return $button;
+    }
+
+    private function deleteButton($rowId){
         $button= "<form action='../public/index.php?action=delete-character&id=".$rowId."' method=\"post\">";
         $button.= "<label for=\"delete".$rowId."\">Delete number ".$rowId."</label>";
         $button.= "<input type=\"submit\" class=\"delete-button\" id=\"delete".$rowId."\" value=\"X\"> </form>";

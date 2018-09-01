@@ -55,10 +55,15 @@ class CharacterController{
 
     }
 
-    public function displayCharacters($user){
+    public function sortCharacter($sortType){
+        echo $this->_charView->setForm();
+        $this->displayCharacters($_SESSION['user'], $sortType);
+    }
+
+    public function displayCharacters($user, $sortType=null){
 
         $titres = ["N°", "Name", "Race", "Job", "Strength", "Mana", "Agility"];
-        $characters = $this->_charManager->getCharacters($user);
+        $characters = $this->_charManager->getCharacters($user,$sortType);
         
         echo $this->_charView->setCharacterTable($characters, $titres, $user);
 

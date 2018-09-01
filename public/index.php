@@ -16,3 +16,6 @@ elseif ($_GET['action']=='create-character') {
 elseif ($_GET['action']=='delete-character'){
     $pagesController->deleteCharacter($_GET['id']);
 }
+elseif ($_GET['action']=='sort-character'){
+    $pagesController->sortCharacter($_GET['sort']);
+}
