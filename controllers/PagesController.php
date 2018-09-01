@@ -1,29 +1,38 @@
 <?php
-
+require_once('ConnectController.php');
+require_once('RegisterController.php');
+require_once('CharacterController.php');
 
 class PagesController{
+
+    private $_connectController;
+    private $_registerController;
+    private $_characterController;
+
+    public function __construct(){
+        $this->_connectController = new ConnectController();
+        $this->_registerController = new RegisterController();
+        $this->_characterController = new CharacterController();
+    }
+
     public function index(){
-        require_once('ConnectController.php');
-        $connectController = new ConnectController();
-        $connectController->connect();
+        $this->_connectController->connect();
     }
 
     public function register(){
-        require_once('RegisterController.php');
-        $registerController = new RegisterController();
-        $registerController->register();
+        $this->_registerController->register();
     }
 
     public function createCharacter(){
-        require_once('CharacterController.php');
-        $characterController = new CharacterController();
-        $characterController->createCharacter($_SESSION['user']);
+        $this->_characterController->createCharacter($_SESSION['user']);
+    }
+    
+    public function deleteCharacter($id){
+        $this->_characterController->deleteCharacter($id);
     }
 
     public function displayCharacters(){
-        require_once('CharacterController.php');
-        $characterController = new CharacterController();
-        $characterController->displayCharacters();
+        $this->_characterController->displayCharacters();
     }
     
     

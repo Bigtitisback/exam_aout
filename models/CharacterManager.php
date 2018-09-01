@@ -30,6 +30,14 @@ class CharacterManager extends Manager{
         return $qExec;
     }
 
+    public function deleteCharacter($id){
+        $db = $this->dbConnect();
+
+        $deleteCharQuery = "DELETE FROM characters WHERE id='".$id."'";
+        $doDelete = $db->query($deleteCharQuery);
+        return $doDelete;
+    }
+
     public function getCharacters($user){
         $db = $this->dbConnect();
 

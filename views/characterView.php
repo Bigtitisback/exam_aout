@@ -65,6 +65,7 @@ class CharacterView{
         $tableau.= "</table>";
         return $tableau;
     }
+
     function deleteButton($rowId){
         $button= "<form action='../public/index.php?action=delete-character&id=".$rowId."' method=\"post\">";
         $button.= "<label for=\"delete".$rowId."\">Delete number ".$rowId."</label>";
@@ -72,17 +73,6 @@ class CharacterView{
         return $button;
     }
 }
-    // if(isset($infos)){
-    //     echo "coucou";
-    //     htmlTable($_GET['info']['characters'], $_GET['info']['titres']);
-    // }
     
-
-    // function deleteCharacter($id){
-    //     $deleteCharQuery = "DELETE FROM characters WHERE id='".$id."'";
-    //     $doDelete = $db->query($deleteCharQuery);
-    // }
-   
-    //echo htmlTable($charactersArray ,$_SESSION['user'], $db, $arrayColumns);
 
 ?>

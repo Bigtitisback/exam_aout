@@ -45,6 +45,16 @@ class CharacterController{
         }
     }
 
+    public function deleteCharacter($id){
+        $executed = $this->_charManager->deleteCharacter($id);
+
+        if($executed != false){
+            echo $this->_charView->setForm();
+            $this->displayCharacters($_SESSION['user']);
+        }
+
+    }
+
     public function displayCharacters($user){
 
         $titres = ["N°", "Name", "Race", "Job", "Strength", "Mana", "Agility"];
