@@ -51,14 +51,17 @@ class CharacterView{
                     }
                 }
             }
-
             $tableau.= "</tr>";
+
             foreach ($characters as $character) {
                 $tableau.= "<tr>";
                 foreach ($character as $attr) {
                     if($attr == $character['id']){$rowId = $attr;}
                     if($attr != $user){$tableau.= "<td>".$attr."</td>";}
-                    if($attr == $user){$tableau.= "<td>".$this->deleteButton($rowId)."</td>";}
+                    if($attr == $user){
+                        $tableau.= "<td>".$this->modifyButton($rowId)."</td>";
+                        $tableau.= "<td>".$this->deleteButton($rowId)."</td>";
+                    }
                 }
                 $tableau.= "</tr>";
             }
@@ -73,9 +76,14 @@ class CharacterView{
         return $button;
     }
 
+    private function modifyButton($rowId){
+        $button= "<form action='../public/index.php?action=modify-character&id=".$rowId."' method=\"post\">";
+        $button.= "<input type=\"submit\" class=\"modify-button\" id=\"modify".$rowId."\" value=\"M\"> </form>";
+        return $button;
+    }
+
     private function deleteButton($rowId){
         $button= "<form action='../public/index.php?action=delete-character&id=".$rowId."' method=\"post\">";
-        $button.= "<label for=\"delete".$rowId."\">Delete number ".$rowId."</label>";
         $button.= "<input type=\"submit\" class=\"delete-button\" id=\"delete".$rowId."\" value=\"X\"> </form>";
         return $button;
     }
