@@ -53,6 +53,15 @@ class CharacterController{
         echo $this->_editorView->displayEditor($character);
     }
 
+    public function editCharacter($id, $strength, $mana, $agility){
+        $character = $this->_charManager->getCharacter($id);
+        $this->_charManager->editCharacter($id, $strength, $mana, $agility);
+
+        echo $this->_charView->setForm();
+        $this->displayCharacters($_SESSION['user']);
+        echo ("CHARACTER :: ".$character['name'].", le ".$character['job']." ".$character['race']." a été modifié !");
+    }
+
     public function deleteCharacter($id){
         $executed = $this->_charManager->deleteCharacter($id);
 

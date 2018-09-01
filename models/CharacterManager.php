@@ -30,6 +30,19 @@ class CharacterManager extends Manager{
         return $qExec;
     }
 
+    public function editCharacter($id, $strength, $mana, $agility){
+        $db = $this->dbConnect();
+
+        $editQuery = $db->prepare( "UPDATE characters SET strength=:newstrength, mana=:newmana, agility=:newagility WHERE id=:id ");
+        $edit = $editQuery->execute(array(
+            'newstrength' => $strength,
+            'newmana' => $mana,
+            'newagility' => $agility,
+            'id' => $id
+        ));
+        return $edit;
+    }
+
     public function deleteCharacter($id){
         $db = $this->dbConnect();
 

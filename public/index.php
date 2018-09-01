@@ -19,6 +19,9 @@ elseif ($_GET['action']=='delete-character'){
 elseif ($_GET['action']=='modify-character'){
     $pagesController->modifyCharacter($_GET['id']);
 }
+elseif ($_GET['action']=='edit-character'){
+    $pagesController->editCharacter($_GET['id'], $_POST['editstrength'], $_POST['editmana'], $_POST['editagility']);
+}
 elseif ($_GET['action']=='sort-character'){
     $pagesController->sortCharacter($_GET['sort']);
 }
