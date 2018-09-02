@@ -72,15 +72,20 @@ class CharacterController{
 
     }
 
+    public function filterCharacter($filterjob, $filterrace){
+        echo $this->_charView->setForm();
+        $this->displayCharacters($_SESSION['user'], null, $filterjob, $filterrace);
+    }
+
     public function sortCharacter($sortType){
         echo $this->_charView->setForm();
         $this->displayCharacters($_SESSION['user'], $sortType);
     }
 
-    public function displayCharacters($user, $sortType=null){
+    public function displayCharacters($user, $sortType=null, $filterjob=null, $filterrace=null){
 
         $titres = ["N°", "Name", "Race", "Job", "Strength", "Mana", "Agility"];
-        $characters = $this->_charManager->getCharacters($user,$sortType);
+        $characters = $this->_charManager->getCharacters($user,$sortType,$filterjob,$filterrace);
         
         echo $this->_charView->setCharacterTable($characters, $titres, $user);
 

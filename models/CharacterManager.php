@@ -60,16 +60,46 @@ class CharacterManager extends Manager{
         return $character;
     }
 
-    public function getCharacters($user, $sortType){
+    public function getCharacters($user, $sortType, $filterjob, $filterrace){
         $db = $this->dbConnect();
 
-        if($sortType == null){
-            $ownerCharactersQuery = "SELECT * FROM characters WHERE  owner='".$user."'";
-        }elseif($sortType == 'N°'){
-            $ownerCharactersQuery = "SELECT * FROM characters WHERE  owner='".$user."' ORDER BY id ";
-        }else{
-            $ownerCharactersQuery = "SELECT * FROM characters WHERE  owner='".$user."' ORDER BY ".$sortType." ";
+        if($filterjob=='none' && $filterrace=='none'){
+            if($sortType == null){
+                $ownerCharactersQuery = "SELECT * FROM characters WHERE  owner='".$user."'";
+            }elseif($sortType == 'N°'){
+                $ownerCharactersQuery = "SELECT * FROM characters WHERE  owner='".$user."' ORDER BY id ";
+            }else{
+                $ownerCharactersQuery = "SELECT * FROM characters WHERE  owner='".$user."' ORDER BY ".$sortType." ";
+            }
         }
+        elseif($filterjob!='none' && $filterrace=='none'){
+            if($sortType == null){
+                $ownerCharactersQuery = "SELECT * FROM characters WHERE  owner='".$user."' AND job='".$filterjob."'";
+            }elseif($sortType == 'N°'){
+                $ownerCharactersQuery = "SELECT * FROM characters WHERE  owner='".$user."' AND job='".$filterjob."' ORDER BY id ";
+            }else{
+                $ownerCharactersQuery = "SELECT * FROM characters WHERE  owner='".$user."' AND job='".$filterjob."' ORDER BY ".$sortType." ";
+            }
+        }
+        elseif($filterjob=='none' && $filterrace!='none'){
+            if($sortType == null){
+                $ownerCharactersQuery = "SELECT * FROM characters WHERE  owner='".$user."' AND race='".$filterrace."'";
+            }elseif($sortType == 'N°'){
+                $ownerCharactersQuery = "SELECT * FROM characters WHERE  owner='".$user."' AND race='".$filterrace."' ORDER BY id ";
+            }else{
+                $ownerCharactersQuery = "SELECT * FROM characters WHERE  owner='".$user."' AND race='".$filterrace."' ORDER BY ".$sortType." ";
+            }
+        }
+        elseif($filterjob!='none' && $filterrace!='none'){
+            if($sortType == null){
+                $ownerCharactersQuery = "SELECT * FROM characters WHERE  owner='".$user."' AND job='".$filterjob."' AND race='".$filterrace."'";
+            }elseif($sortType == 'N°'){
+                $ownerCharactersQuery = "SELECT * FROM characters WHERE  owner='".$user."' AND job='".$filterjob."' AND race='".$filterrace."' ORDER BY id ";
+            }else{
+                $ownerCharactersQuery = "SELECT * FROM characters WHERE  owner='".$user."' AND job='".$filterjob."' AND race='".$filterrace."' ORDER BY ".$sortType." ";
+            }
+        }
+
         $getCharacters = $db->query($ownerCharactersQuery);
         $charactersArray = $getCharacters->fetchAll(PDO::FETCH_ASSOC);
 

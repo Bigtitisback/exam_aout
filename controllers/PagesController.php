@@ -39,6 +39,10 @@ class PagesController{
         $this->_characterController->editCharacter($id, $strength, $mana, $agility);
     }
 
+    public function filterCharacter($filterjob, $filterrace){
+        $this->_characterController->filterCharacter($filterjob, $filterrace);
+    }
+
     public function sortCharacter($sortType){
         $this->_characterController->sortCharacter($sortType);
     }

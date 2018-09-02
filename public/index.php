@@ -22,6 +22,9 @@ elseif ($_GET['action']=='modify-character'){
 elseif ($_GET['action']=='edit-character'){
     $pagesController->editCharacter($_GET['id'], $_POST['editstrength'], $_POST['editmana'], $_POST['editagility']);
 }
+elseif ($_GET['action']=='filter-character'){
+    $pagesController->filterCharacter($_POST['filterjob'], $_POST['filterrace']);
+}
 elseif ($_GET['action']=='sort-character'){
     $pagesController->sortCharacter($_GET['sort']);
 }

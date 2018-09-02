@@ -34,9 +34,36 @@ class CharacterView{
             <input type='range' id='char-agility' name='charagility' min='0' max='10' value='0'>
 
             <button type='submit' id='char__submit'>Create</button>
+        </form> 
+        
+        <form method='post' action='../public/index.php?action=filter-character' class='filter-form'>
+
+            <label for='filter-job'>Job:</label>
+            <select name='filterjob' id='filter-job'>
+                <option value='none'>None</option>
+                <option value='warrior'>Warrior</option>
+                <option value='mage'>Mage</option>
+                <option value='thief'>Thief</option>
+                <option value='monk'>Monk</option>
+            </select>
+
+            <label for='filter-race'>Race:</label>
+            <select name='filterrace' id='filter-race'>
+                <option value='none'>None</option>
+                <option value='human'>Human</option>
+                <option value='troll'>Troll</option>
+                <option value='skaven'>Skaven</option>
+                <option value='werewolf'>Werewolf</option>
+            </select>
+
+            <button type='submit' id='filter__submit'>Filter</button>
         </form> ";
 
         return $form;
+    }
+
+    public function setFilter(){
+        $filter = null;
     }
 
     public function setCharacterTable($characters, $titres, $user){
